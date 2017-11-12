@@ -14,6 +14,7 @@ import os
 from datetime import timedelta
 from django.core.wsgi import get_wsgi_application
 from whitenoise.django import DjangoWhiteNoise
+import dj_database_url
 
 
 
