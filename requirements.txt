@@ -4,12 +4,14 @@ billiard==3.5.0.3
 celery==4.1.0
 certifi==2017.7.27.1
 chardet==3.0.4
+dj-database-url==0.4.2
 Django==1.11.6
 django-celery-beat==1.1.0
 djangorestframework==3.7.1
 djangorestframework-jwt==1.11.0
 ephem==3.7.6.0
 flake8==3.5.0
+gunicorn==19.7.1
 idna==2.6
 isort==4.2.15
 kombu==4.1.0
