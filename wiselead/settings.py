@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 from datetime import timedelta
+from django.core.wsgi import get_wsgi_application
+from whitenoise.django import DjangoWhiteNoise
+
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -176,3 +180,11 @@ JWT_AUTH = {
 # 192.168.1.178
 
 ALLOWED_HOSTS = ['192.168.1.178', 'localhost', '127.0.0.1']
+
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "wiselead.settings")
+
+application = get_wsgi_application()
+application = DjangoWhiteNoise(application)
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
