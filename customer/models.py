@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 from account.models import Account
 from datetime import datetime
-# Create your models here.
 
 class Customer(models.Model):
 
@@ -33,7 +32,6 @@ class Mortgage(models.Model):
     loan_begin = models.DateTimeField(auto_now_add=False, blank=False, default=timezone.now)
     loan_end = models.DateTimeField(auto_now_add=False, blank=False, default=timezone.now)
     loan_rate = models.DecimalField(max_digits=5,decimal_places=3, default=0.03)
-    loan_period = models.IntegerField(default=30)
     loan_model = models.CharField(
         max_length=2,
         choices=LOAN_MODEL_CHOICS,

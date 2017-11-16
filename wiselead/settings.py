@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'account',
     'customer',
-    'whitenoise.runserver_nostatic',
+#    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -192,3 +192,10 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
     'JWT_AUTH_COOKIE': None,
 }
+
+# Gmail
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'testwiselead@gmail.com'
+EMAIL_HOST_PASSWORD = 'Testwiselead*'
+EMAIL_PORT = 587

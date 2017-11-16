@@ -29,3 +29,20 @@ class AccountView(viewsets.ViewSet):
                 return Response({"StatusCode":"0", "Message": ser.data}, status.HTTP_201_CREATED)
         except:
             return Response({"StatusCode":"1", "Message": ser.errors}, status.HTTP_400_BAD_REQUEST)
+
+
+def verify(self, request, uuid):
+    
+    if request.method == 'POST':
+        account = None
+        try:
+            account = Account.objects.filter(verification_uuid=uuid, is_verified=False)
+            account.is_verified = True
+            ser = AccountSerializer(account)
+            if ser.is_valid():
+                ser.save()
+                return Response({"StatusCode":"0", "Message": ser.data}, status.HTTP_201_CREATED)
+        except:
+            return Response({"StatusCode":"1", "Message": ser.errors}, status.HTTP_400_BAD_REQUEST)
+
+

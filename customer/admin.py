@@ -9,6 +9,3 @@ class CustomerAdmin(admin.ModelAdmin):
 @admin.register(Mortgage)
 class Mortgage(admin.ModelAdmin):
     list_display = ('id', 'customer_mortgage', 'loan_amount', 'loan_begin', 'loan_rate', 'loan_model')
-
-#admin.site.register(Customer, CustomerAdmin)
-#admin.site.register(Mortgage)

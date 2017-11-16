@@ -6,20 +6,17 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import status
 from .permissions import IsOwner
-
 from .serializers import CustomerSerializer
+from rest_framework import status
+
 # Create your views here.
 class ListCustomer(APIView):
 
     permission_classes = (IsAuthenticated, IsOwner)
 
     def get(self, request, format=None):
-        # Get user in request
-        #print(request.user)
         
         customer_list = Customer.objects.filter(account_customer=request.user)
-        print(customer_list)
-        #data = serializers.serialize("json", customer_list)
 
         ser = CustomerSerializer(customer_list, many=True)
 
@@ -33,43 +30,31 @@ class ListCustomer(APIView):
             return Response(ser.data, status.HTTP_201_CREATED)
         return Response(ser.errors, status.HTTP_400_BAD_REQUEST)
 
-    
-
 class CustomerDetail(APIView):
 
     permission_classes = (IsAuthenticated, IsOwner)
 
-    def get_customer(self, pk):
+    def get_customer(self, id):
         customer = Customer.objects.get(pk)
         return customer
 
-    def get(self, request, pk=None):
+    def get(self, request, id):
         c = self.get_customer(pk)
         ser = CustomerSerializer(c)
         return Response(ser.data)
 
     def put(self, request, id, format=None):
-        customer = Customer.objects.get(pk=id)
+        customer = Customer.objects.get(id=id)
         ser = CustomerSerializer(customer, data=request.data)
         if ser.is_valid():
             ser.save()
             return Response(ser.data)
         else:
             return Response(ser.errors)
-
-
-
-# class CustomerDetailView(APIView):
-
-#     permission_classes = (IsAuthenticated, IsOwner)
-
-#     def update(self, request, id):
-#         customer = Customer.objects.get(pk=id)
-
-#         if customer:
-#             print(customer)
-
-
-
+    
+    def delete(self, request, id, format=None):
+        c = Customer.objects.get(pk=id)
+        c.delete()
+        return Response({}, status.HTTP_204_NO_CONTENT)
 
 
