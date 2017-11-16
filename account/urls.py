@@ -7,6 +7,6 @@ urlpatterns = [
     #     "post":"registration",
     #     "post":"verify"
     #     }), name='account-detail'),
-
+    url(r'^registration', views.registration, name='account-register'),
     url(r'^verify/(?P<uuid>[a-z0-9\-]+)/', views.verify, name='account-verify'),
 ]
