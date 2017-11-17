@@ -7,7 +7,6 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import status
 from .permissions import IsOwner
 from .serializers import CustomerSerializer
-from rest_framework import status
 
 # Create your views here.
 class ListCustomer(APIView):
